@@ -30,7 +30,7 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={"/", "/motorcycles"} component={MotorcyclesList}></Route>
+            <Route exact path={"/motorcycles"} component={MotorcyclesList}></Route>
             <Route exact path={"/add"} component={AddMotorcycle}></Route>
             <Route path={"/motorcycles/:id"} component={Motorcycle}></Route>
             <Route exact path={"*"}>
