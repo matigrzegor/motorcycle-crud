@@ -79,9 +79,6 @@ class AddMotorcycle extends Component {
         ) : (
           <div>
             <div className="form-group">
-              {this.props.addMotorcycle.errors.blank.includes('brand') ? <div class="alert alert-danger" role="alert">
-                Brand can't be blank
-              </div> : null}
               <label htmlFor="brand">Brand</label>
               <input
                 type="text"
@@ -92,12 +89,12 @@ class AddMotorcycle extends Component {
                 onChange={this.props.onChangeBrand}
                 name="brand"
               />
+              {this.props.addMotorcycle.errors.blank.includes('brand') ? <div class="alert alert-danger" role="alert">
+                Brand can't be blank
+              </div> : null}
             </div>
 
             <div className="form-group">
-              {this.props.addMotorcycle.errors.blank.includes('description') ? <div class="alert alert-danger" role="alert">
-                Description can't be blank
-              </div> : null}
               <label htmlFor="description">Description</label>
               <input
                 type="text"
@@ -108,6 +105,9 @@ class AddMotorcycle extends Component {
                 onChange={this.props.onChangeDescription}
                 name="description"
               />
+              {this.props.addMotorcycle.errors.blank.includes('description') ? <div class="alert alert-danger" role="alert">
+                Description can't be blank
+              </div> : null}
             </div>
 
             <button onClick={this.saveMotorcycle} className="btn btn-success">

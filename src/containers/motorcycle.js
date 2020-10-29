@@ -96,9 +96,6 @@ class Motorcycle extends Component {
             <h4>Motorcycle</h4>
             <form>
               <div className="form-group">
-                {this.props.currentMotorcycle.errors.blank.includes('brand') ? <div class="alert alert-danger" role="alert">
-                  Brand can't be blank
-                </div> : null}
                 <label htmlFor="brand">Brand</label>
                 <input
                   type="text"
@@ -107,11 +104,11 @@ class Motorcycle extends Component {
                   value={currentMotorcycle.brand}
                   onChange={this.props.onChangeBrand}
                 />
+                {this.props.currentMotorcycle.errors.blank.includes('brand') ? <div class="alert alert-danger" role="alert">
+                  Brand can't be blank
+                </div> : null}
               </div>
               <div className="form-group">
-                {this.props.currentMotorcycle.errors.blank.includes('description') ? <div class="alert alert-danger" role="alert">
-                  Description can't be blank
-                </div> : null}
                 <label htmlFor="description">Description</label>
                 <input
                   type="text"
@@ -120,6 +117,9 @@ class Motorcycle extends Component {
                   value={currentMotorcycle.description}
                   onChange={this.props.onChangeDescription}
                 />
+                {this.props.currentMotorcycle.errors.blank.includes('description') ? <div class="alert alert-danger" role="alert">
+                  Description can't be blank
+                </div> : null}
               </div>
             </form>
 
