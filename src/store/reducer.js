@@ -68,17 +68,10 @@ const reducer = (state = initialState, action) => {
           submitted: action.data.submitted
         }
       }
-    case 'NEW_MOTORCYCLE_IN_ADD_MOTORCYCLE':
+    case 'RESET_MOTORCYCLE_IN_ADD_MOTORCYCLE':
       return {
         ...state,
-        addMotorcycle: {
-          ...state.addMotorcycle,
-          id: action.data.id,
-          brand: action.data.brand,
-          description: action.data.description,
-          submitted: action.data.submitted,
-          errors: action.data.errors
-        }
+        addMotorcycle: action.data
       }
     case 'ADD_ERRORS_IN_CURRENT_MOTORCYCLE':
       return {

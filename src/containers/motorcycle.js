@@ -8,6 +8,10 @@ class Motorcycle extends Component {
     this.getMotorcycle(this.props.match.params.id)
   }
 
+  componentWillUnmount() {
+    this.props.onCleanMotorcycle.bind(this)()
+  }
+
   getMotorcycle = (id) => {
     MotorcycleDataService.get(id)
       .then(response => {
@@ -56,15 +60,15 @@ class Motorcycle extends Component {
   validateData = () => {
     let blank = []
 
-    if (this.props.currentMotorcycle.brand.length == 0) {
+    if (this.props.currentMotorcycle.brand.length === 0) {
       blank.push('brand')
     }
 
-    if (this.props.currentMotorcycle.description.length == 0) {
+    if (this.props.currentMotorcycle.description.length === 0) {
       blank.push('description')
     }
 
-    if (blank.length == 0) {
+    if (blank.length === 0) {
       return true
     } else {
       this.props.onInvalidData.bind(this, blank)()
@@ -96,9 +100,6 @@ class Motorcycle extends Component {
             <h4>Motorcycle</h4>
             <form>
               <div className="form-group">
-                {this.props.currentMotorcycle.errors.blank.includes('brand') ? <div class="alert alert-danger" role="alert">
-                  Brand can't be blank
-                </div> : null}
                 <label htmlFor="brand">Brand</label>
                 <input
                   type="text"
@@ -107,11 +108,11 @@ class Motorcycle extends Component {
                   value={currentMotorcycle.brand}
                   onChange={this.props.onChangeBrand}
                 />
+                {this.props.currentMotorcycle.errors.blank.includes('brand') ? <div className="alert alert-danger" role="alert">
+                  Brand can't be blank
+                </div> : null}
               </div>
               <div className="form-group">
-                {this.props.currentMotorcycle.errors.blank.includes('description') ? <div class="alert alert-danger" role="alert">
-                  Description can't be blank
-                </div> : null}
                 <label htmlFor="description">Description</label>
                 <input
                   type="text"
@@ -120,6 +121,9 @@ class Motorcycle extends Component {
                   value={currentMotorcycle.description}
                   onChange={this.props.onChangeDescription}
                 />
+                {this.props.currentMotorcycle.errors.blank.includes('description') ? <div className="alert alert-danger" role="alert">
+                  Description can't be blank
+                </div> : null}
               </div>
             </form>
 

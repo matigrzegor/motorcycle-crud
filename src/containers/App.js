@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import MotorcyclesList from './motorcycles-list'
 import Motorcycle from './motorcycle'
@@ -33,6 +33,9 @@ class App extends Component {
             <Route exact path={"/", "/motorcycles"} component={MotorcyclesList}></Route>
             <Route exact path={"/add"} component={AddMotorcycle}></Route>
             <Route path={"/motorcycles/:id"} component={Motorcycle}></Route>
+            <Route exact path={"*"}>
+              <Redirect to="/motorcycles" />
+            </Route>
           </Switch>
         </div>
       </div>
