@@ -4,6 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MotorcycleDataService from "./../services/motorcycle.service";
 
 class AddMotorcycle extends Component {
+  componentWillUnmount() {
+    this.resetMotorcycle()
+  }
+
   saveMotorcycle = () => {
     if (this.validateData()) {
       const data = {
@@ -19,7 +23,6 @@ class AddMotorcycle extends Component {
             id: response.data.id,
             brand: response.data.brand,
             description: response.data.description,
-            published: response.data.published,
             submitted: true
           }
 
@@ -35,27 +38,26 @@ class AddMotorcycle extends Component {
   validateData = () => {
     let blank = []
 
-    if (this.props.addMotorcycle.brand.length == 0) {
+    if (this.props.addMotorcycle.brand.length === 0) {
       blank.push('brand')
     }
 
-    if (this.props.addMotorcycle.description.length == 0) {
+    if (this.props.addMotorcycle.description.length === 0) {
       blank.push('description')
     }
 
-    if (blank.length == 0) {
+    if (blank.length === 0) {
       return true
     } else {
       this.props.onInvalidData.bind(this, blank)()
     }
   }
 
-  newMotorcycle = () => {
+  resetMotorcycle = () => {
     const data = {
       id: null,
       brand: "",
       description: "",
-      published: false,
 
       errors: {
         blank: []
@@ -63,7 +65,7 @@ class AddMotorcycle extends Component {
       submitted: false
     }
 
-    this.props.onNewMotorcycle.bind(this, data)()
+    this.props.onResetMotorcycle.bind(this, data)()
   }
 
 	render(){
@@ -72,7 +74,7 @@ class AddMotorcycle extends Component {
         {this.props.addMotorcycle.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newMotorcycle}>
+            <button className="btn btn-success" onClick={this.resetMotorcycle}>
               Add next motorcycle
             </button>
           </div>
@@ -89,7 +91,7 @@ class AddMotorcycle extends Component {
                 onChange={this.props.onChangeBrand}
                 name="brand"
               />
-              {this.props.addMotorcycle.errors.blank.includes('brand') ? <div class="alert alert-danger" role="alert">
+              {this.props.addMotorcycle.errors.blank.includes('brand') ? <div className="alert alert-danger" role="alert">
                 Brand can't be blank
               </div> : null}
             </div>
@@ -105,7 +107,7 @@ class AddMotorcycle extends Component {
                 onChange={this.props.onChangeDescription}
                 name="description"
               />
-              {this.props.addMotorcycle.errors.blank.includes('description') ? <div class="alert alert-danger" role="alert">
+              {this.props.addMotorcycle.errors.blank.includes('description') ? <div className="alert alert-danger" role="alert">
                 Description can't be blank
               </div> : null}
             </div>
@@ -132,7 +134,7 @@ const mapDispatchToProps = dispatch => {
     onValidData: (data) => dispatch({type: 'ADD_MOTORCYCLE_IN_ADD_MOTORCYCLE', data: data}),
     onChangeBrand: (event) => dispatch({type: 'CHANGE_BRAND_IN_ADD_MOTORCYCLE', brand: event.target.value}),
     onChangeDescription: (event) => dispatch({type: 'CHANGE_DESCRIPTION_IN_ADD_MOTORCYCLE', description: event.target.value}),
-    onNewMotorcycle: (data) => dispatch({type: 'NEW_MOTORCYCLE_IN_ADD_MOTORCYCLE', data: data}),
+    onResetMotorcycle: (data) => dispatch({type: 'RESET_MOTORCYCLE_IN_ADD_MOTORCYCLE', data: data}),
     onCleanCurrentMotorcycleFromMotorcyclesList: () => dispatch({type: 'CLEAN_CURRENT_MOTORCYCLE_IN_MOTORCYCLES_LIST'})
   }
 }
