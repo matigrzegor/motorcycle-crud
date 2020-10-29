@@ -162,9 +162,9 @@ const reducer = (state = initialState, action) => {
           currentIndex: action.index
         }
       }
+    default:
+      return state
   }
-
-	return state
 }
 
 export default reducer
