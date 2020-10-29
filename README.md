@@ -37,7 +37,7 @@ Create `motorcycle-crud-db.json` with that data:
 }
 ```
   
-Start JSON Server with another tab:
+Start JSON Server in another tab:
   
 ```bash
 json-server --watch motorcycle-crud-db.json
