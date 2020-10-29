@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, Switch, Route } from 'react-router-dom';
-import './App.css';
 
 import MotorcyclesList from './motorcycles-list'
 import Motorcycle from './motorcycle'
